@@ -5,6 +5,6 @@
   = link_to @<%= singular_table_name %>, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-info-sign
     = t( '.show' )
-  -#%h1= <%= t( '.editing' ) + ' ' + "'#{singular_table_name}'" %>
+  %h1= t( '.editing' ) + ' ' + <%= "'#{singular_table_name}'" %>
 
 = render 'form'
