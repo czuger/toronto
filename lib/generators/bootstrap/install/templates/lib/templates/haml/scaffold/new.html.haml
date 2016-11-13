@@ -2,6 +2,6 @@
   = link_to <%= index_helper %>_path, class: 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     = t( '.back' )
-  %h1= t( '.new' ) + ' ' + <%= "'#{singular_table_name}'" %>
+  %h1= t( '.title' )
 
 = render 'form'

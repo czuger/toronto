@@ -2,7 +2,7 @@
   = link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
     = t( '.new' ) + ' ' + <%= "'#{human_name}'" %>
-  %h1= t( '.listing' ) + ' ' + <%=  "'#{plural_table_name}'" %>
+  %h1= t( '.title' )
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
