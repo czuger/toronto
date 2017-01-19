@@ -1,8 +1,10 @@
 # Bootstrap Generators
 
-[![Build Status](https://travis-ci.org/decioferreira/bootstrap-generators.png?branch=master)](https://travis-ci.org/decioferreira/bootstrap-generators)
+This is a fork from https://github.com/decioferreira/bootstrap-generators
 
-Bootstrap-generators provides [Twitter Bootstrap](http://getbootstrap.com/) generators for Rails 4 (supported Rails >= 3.1). Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites.
+* All fields are translated
+
+*Caution* : it only work for haml
 
 ## Current Twitter Bootstrap version
 
@@ -12,7 +14,7 @@ The current supported version of Twitter Bootstrap is 3.3.4.
 
 In your Gemfile, add this line:
 
-    gem 'bootstrap-generators', '~> 3.3.4'
+    gem 'toronto'
 
 Or you can install from latest build:
 
