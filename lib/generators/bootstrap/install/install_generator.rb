@@ -10,6 +10,14 @@ module Bootstrap
       class_option :stylesheet_engine
       class_option :skip_turbolinks, type: :boolean, default: false, desc: "Skip Turbolinks on assets"
 
+      def copy_scaffold_generator
+        directory 'lib/rails'
+      end
+
+      def copy_locale_file
+        copy_file 'config/initializers/locales.rb', 'config/initializers/locales.rb'
+      end
+
       def copy_lib
         directory "lib/templates/#{options[:template_engine]}"
       end
