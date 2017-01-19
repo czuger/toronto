@@ -1,0 +1,23 @@
+fr:
+  <%= plural_table_name %>:
+    index:
+      title: Liste
+      edit: Editer
+      new: Nouveau
+      show: Détail
+      delete: Suppression
+      confirm: Etes vous sur ?
+    edit:
+      title: Editer
+      back: Retour
+      show: Détail
+    show:
+      title: Détail
+      back: Retour
+      edit: Editer
+    new:
+      title: Ajouter
+      back: Retour
+    form:
+      submit: Valider
+
