@@ -33,11 +33,11 @@
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li.active
-              = link_to( 'Home', '#' )
+              = nav_link( 'Home', '#' )
             %li
-              = link_to( 'About', '#about' )
+              = nav_link( 'About', '#about' )
             %li
-              = link_to( 'Contact', '#contact' )
+              = nav_link( 'Contact', '#contact' )
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? 'danger' : 'success' } alert-dismissable", role: 'alert' do

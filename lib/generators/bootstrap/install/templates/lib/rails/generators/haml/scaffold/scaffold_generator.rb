@@ -29,6 +29,13 @@ module Haml
         end
       end
 
+      def add_menu
+        data = %{
+            %li
+              = nav_link( '#{name.humanize.pluralize}', #{name.underscore.pluralize}_path )}
+        insert_into_file 'app/views/layouts/application.html.haml', data, :after => "= nav_link( 'Home', '#' )"
+      end
+
       protected
 
       def available_views

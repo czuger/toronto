@@ -12,9 +12,14 @@
 
 <% for attribute in attributes -%>
   .form-group
-    = f.label <%= "t( '." + attribute.name + "' )" %>, class: 'col-sm-2 control-label'
+    = f.label :<%= attribute.name %>, class: 'col-sm-2 control-label'
     .col-sm-10
+      <% if attribute.type == :references %>
+      = f.collection_select :<%= attribute.name %>_id, <%= attribute.name.camelize %>.all, :id, :name, prompt: true
+      <% else %>
       = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control'
+      <% end %>
+
 <% end -%>
   .form-group
     .col-sm-offset-2.col-sm-10
