@@ -24,4 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
 
   spec.add_runtime_dependency 'railties', '>= 3.1.0'
+  spec.add_runtime_dependency 'haml-rails', '>= 0.9.0'
+
 end

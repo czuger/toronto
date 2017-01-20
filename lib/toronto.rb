@@ -14,5 +14,10 @@ module Bootstrap
         app.config.assets.precompile << /\.(?:svg|eot|woff|woff2|ttf)$/
       end
     end
+
+    class Railtie < ::Rails::Railtie
+      config.app_generators.template_engine :haml
+    end
+
   end
 end
