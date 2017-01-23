@@ -24,3 +24,5 @@ end
 
 gem 'rails', rails
 gem 'uglifier'
+
+# gem 'haml-rails', '>= 0.9.0'

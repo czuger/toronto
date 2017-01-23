@@ -1,11 +1,11 @@
 # coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "bootstrap/generators/version"
+require 'toronto/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'toronto'
-  spec.version       = Bootstrap::Generators::VERSION
+  spec.version       = Toronto::VERSION
   spec.authors       = ['Cédric Zuger']
   spec.email         = ['zuger.cedric@gmail.com']
   spec.summary       = 'inTernatiOnalization Ready bOotstrap geNeraTOr'
@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
+  # spec.add_development_dependency 'haml-rails', '>= 0.9.0'
 
   spec.add_runtime_dependency 'railties', '>= 3.1.0'
-  spec.add_runtime_dependency 'haml-rails', '>= 0.9.0'
+  # spec.add_runtime_dependency 'haml-rails', '>= 0.9.0'
 
 end

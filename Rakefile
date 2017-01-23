@@ -10,7 +10,7 @@ end
 
 task default: :test
 
-namespace :bootstrap do
+namespace :toronto do
   desc "Update to a new version of Twitter Bootstrap"
   task :update do
     bootstrap_version = "3.3.4"

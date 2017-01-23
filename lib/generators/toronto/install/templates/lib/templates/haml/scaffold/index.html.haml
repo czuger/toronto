@@ -19,7 +19,11 @@
       - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
         %tr
 <% for attribute in attributes -%>
+  <% if attribute.type == :references %>
+          %td= <%= singular_table_name %>.<%= attribute.name %>.name
+  <% else %>
           %td= <%= singular_table_name %>.<%= attribute.name %>
+  <% end %>
 <% end -%>
           %td= link_to t( '.show' ), <%= singular_table_name %>
           %td= link_to t( '.edit' ), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
