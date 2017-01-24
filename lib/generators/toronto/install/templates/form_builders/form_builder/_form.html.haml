@@ -1,4 +1,4 @@
-= form_for @<%= singular_table_name %>, html: { class: "form-horizontal", role: "form" } do |f|
+= form_for @<%= singular_table_name %>, html: { class: 'form-horizontal', role: "form" } do |f|
   -if @<%= singular_table_name %>.errors.any?
     .alert.alert-danger.alert-dismissable{role: "alert"}
       %button.close{type: "button", data: {dismiss: "alert"} }
@@ -15,7 +15,7 @@
     = f.label :<%= attribute.name %>, class: 'col-sm-2 control-label'
     .col-sm-10
       <% if attribute.type == :references %>
-      = f.collection_select :<%= attribute.name %>_id, <%= attribute.name.camelize %>.all, :id, :name, prompt: true
+      = f.collection_select :<%= attribute.name %>_id, <%= attribute.name.camelize %>.all, :id, :name, { prompt: true }, { class: 'form-control' }
       <% else %>
       = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control'
       <% end %>
