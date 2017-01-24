@@ -1,14 +1,10 @@
-# Toronto
+# Bootstrap Generators
 
 This is a fork from https://github.com/decioferreira/bootstrap-generators
 
-* Patch your scaffold generator
-* Use bootstrap
-* Translate fields (english and french for the moment)
-* References produce selects
-* Automatic menu
+* All fields are translated
 
-*Caution* : supported template engine : haml only
+*Caution* : it only work for haml
 
 ## Current Twitter Bootstrap version
 
@@ -19,7 +15,10 @@ The current supported version of Twitter Bootstrap is 3.3.4.
 In your Gemfile, add this line:
 
     gem 'toronto'
-    gem 'haml-rails'
+
+Or you can install from latest build:
+
+    gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 
 Run bundle install:
 
@@ -29,7 +28,7 @@ Run bundle install:
 
 Get started:
 
-    rails generate toronto:install
+    rails generate bootstrap:install
 
 To overwrite files that already exist, pass the `--force` (`-f`) option.
 
@@ -45,12 +44,14 @@ You can easily customize colors, grid system, fonts, and much more by editing `b
 
 ## Usage
 
-To print the options and usage run the command `rails toronto:install --help`
+To print the options and usage run the command `rails generate bootstrap:install --help`
 
     Usage:
-      rails generate toronto:install [options]
+      rails generate bootstrap:install [options]
 
     Options:
+      -e, [--template-engine=TEMPLATE_ENGINE]          # Indicates when to generate template engine
+                                                       # Default: erb
       -se, [--stylesheet-engine=STYLESHEET_ENGINE]     # Indicates when to generate stylesheet engine
                                                        # Default: scss
           [--skip-turbolinks], [--no-skip-turbolinks]  # Indicates when to generate skip turbolinks
@@ -69,7 +70,30 @@ To print the options and usage run the command `rails toronto:install --help`
 
 Supported template engines:
 
+* ~~ERB~~
 * Haml
+* ~~Slim~~
+
+##### Haml
+
+Add the dependency on your Gemfile:
+
+    gem 'haml-rails'
+
+And then run:
+
+    rails generate bootstrap:install --template-engine=haml
+
+##### Slim
+
+Add the dependency on your Gemfile:
+
+    gem 'slim-rails'
+
+And then run:
+
+    rails generate bootstrap:install --template-engine=slim
+
 
 #### Stylesheet engines
 
