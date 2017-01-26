@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Cédric Zuger']
   spec.email         = ['zuger.cedric@gmail.com']
   spec.summary       = 'inTernatiOnalization Ready bOotstrap geNeraTOr'
-  spec.description   = 'This is a fork of Twitter Bootstrap generators where static fields are translated fields.'
+  spec.description   = 'Internationalized bootstrap ready scaffold generator'
   spec.homepage      = 'https://github.com/czuger/toronto'
   spec.license       = 'MIT'
 
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   # spec.add_development_dependency 'haml-rails', '>= 0.9.0'
 
-  spec.add_runtime_dependency 'railties', '>= 3.1.0'
+  spec.add_runtime_dependency 'railties', '~> 3.1'
   # spec.add_runtime_dependency 'haml-rails', '>= 0.9.0'
 
 end
