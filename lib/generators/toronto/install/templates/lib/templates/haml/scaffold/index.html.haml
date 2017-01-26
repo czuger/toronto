@@ -9,7 +9,7 @@
     %thead
       %tr
 <% for attribute in attributes -%>
-        %th= <%= "t( '." + attribute.name + "')" %>
+        %th= <%= "t( 'helpers.label.#{singular_table_name}.#{attribute.name}' )" %>
 <% end -%>
         %th
         %th

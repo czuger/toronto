@@ -11,13 +11,31 @@ module Haml
           filename = filename_with_extensions(view)
           template "#{view}.html.haml", File.join("app/views", controller_file_path, filename)
         end
+      end
 
+      def copy_and_update_languages_files
         languages = %w( en fr )
 
         languages.each do |lang|
-          template "#{lang}.yml", File.join( 'config/locales', lang, "#{name.downcase.pluralize}.yml" )
-        end
+          yaml_path = File.join( 'config/locales', lang, "#{plural_table_name}.yml" )
+          template "#{lang}.yml", yaml_path
 
+          attributes_json = {}
+          attributes.each do |attribute|
+            attributes_json[ attribute.name ] = attribute.name.humanize
+          end
+
+          yaml_content = YAML.load( File.open( yaml_path ).read )
+          yaml_content[ lang ][ 'helpers' ] = {}
+          yaml_content[ lang ][ 'helpers' ][ 'label' ] = {}
+          yaml_content[ lang ][ 'helpers' ][ 'label' ][ singular_table_name ] = attributes_json
+
+          yaml_content[ lang ][ plural_table_name ][ 'menu_title' ] = name
+
+          File.open( yaml_path, 'w' ) do |f|
+            f.write( YAML.dump( yaml_content ) )
+          end
+        end
       end
 
       hook_for :form_builder, :as => :scaffold
@@ -32,8 +50,8 @@ module Haml
       def add_menu
         data = %{
             %li
-              = nav_link( '#{name.humanize.pluralize}', #{name.underscore.pluralize}_path )}
-        insert_into_file 'app/views/layouts/application.html.haml', data, :after => "= nav_link( 'Home', '#' )"
+              = nav_link( t( '#{plural_table_name}.menu_title' ), #{plural_table_name}_path )}
+        insert_into_file 'app/views/layouts/application.html.haml', data, :after => '%ul.nav.navbar-nav'
       end
 
       protected

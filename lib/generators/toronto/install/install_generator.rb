@@ -44,7 +44,9 @@ module Toronto
     def copy_locale_files
       copy_file 'config/initializers/locales.rb', 'config/initializers/locales.rb'
       copy_file 'controllers/locales_controller.rb', 'app/controllers/locales_controller.rb'
+    end
 
+    def patch_locale_files
       # TODO : use a template file
       data = %{
   def set_locale
@@ -54,7 +56,6 @@ module Toronto
       insert_into_file 'app/controllers/application_controller.rb', data, :before => /^end/
 
       data = "\n  before_action :set_locale"
-
       insert_into_file 'app/controllers/application_controller.rb', data, :after => /^class ApplicationController < ActionController::Base/
     end
 

@@ -6,7 +6,9 @@
     %meta{content: 'width=device-width, initial-scale=1', name: 'viewport' }
     %meta{content: '', name: 'description' }
     %meta{content: '', name: 'author' }
-    %title Starter Template for Bootstrap
+    %title
+      -# TODO : replace by a static string
+      = Rails.application.class.parent_name
 
     / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
     /[if lt IE 9]
@@ -29,15 +31,10 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "Project name", "#", class: "navbar-brand"
+          -# TODO : replace by a static string
+          = link_to Rails.application.class.parent_name, '/', class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              = nav_link( 'Home', '#' )
-            %li
-              = nav_link( 'About', '#about' )
-            %li
-              = nav_link( 'Contact', '#contact' )
           #flags-area
             = link_to '/set_locale/en', method: :put do
               %span{ class: 'flag flag-gb' }

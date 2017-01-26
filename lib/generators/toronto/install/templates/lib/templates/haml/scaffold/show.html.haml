@@ -9,7 +9,7 @@
 
 %dl.dl-horizontal
   <%- for attribute in attributes -%>
-  %dt= <%= "t( '." + attribute.name + "')" %> + ' :'
+  %dt= <%= "t( 'helpers.label.#{singular_table_name}.#{attribute.name}' )" %> + ' :'
     <% if attribute.type == :references %>
   %dd= @<%= singular_table_name %>.<%= attribute.name %>.name
     <% else %>
