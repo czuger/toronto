@@ -27,7 +27,7 @@ Run bundle install:
 
 ## Generators
 
-Get started:
+Get started: 
 
     rails generate toronto:install
 
