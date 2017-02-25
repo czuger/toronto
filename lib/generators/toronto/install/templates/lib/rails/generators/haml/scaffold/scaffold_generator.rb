@@ -14,7 +14,7 @@ module Haml
       end
 
       def copy_and_update_languages_files
-        languages = %w( en fr )
+        languages = %w( en fr de cn )
 
         languages.each do |lang|
           yaml_path = File.join( 'config/locales', lang, "#{plural_table_name}.yml" )

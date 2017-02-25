@@ -60,7 +60,7 @@ module Toronto
     end
 
     def inject_locales_route
-      route = "\n  put 'set_locale/:locale', constraints: { locale: /en|fr/ }, to: 'locales#set'\n"
+      route = "\n  put 'set_locale/:locale', constraints: { locale: /en|fr|de|cn/ }, to: 'locales#set'\n"
       insert_into_file 'config/routes.rb', route, :before => /^end/
     end
 

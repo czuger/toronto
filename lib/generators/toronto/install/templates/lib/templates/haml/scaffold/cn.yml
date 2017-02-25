@@ -1,0 +1,23 @@
+cn:
+  <%= plural_table_name %>:
+    index:
+      title: 目录
+      edit: 编辑
+      new: 新
+      show: 显示
+      delete: 删除
+      confirm: 你确定
+    edit:
+      title: 编辑
+      back: 以前
+      show: 显示
+    show:
+      title: 显示
+      back: 以前
+      edit: 编辑
+    new:
+      title: 新
+      back: 以前
+    form:
+      submit: 提交
+
