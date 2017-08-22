@@ -9,6 +9,7 @@ module Toronto
     class_option :template_engine
     class_option :stylesheet_engine
     class_option :skip_turbolinks, type: :boolean, default: false, desc: "Skip Turbolinks on assets"
+    class_option :languages
 
     def copy_scaffold_generator
       directory 'lib/rails'
@@ -60,7 +61,10 @@ module Toronto
     end
 
     def inject_locales_route
-      route = "\n  put 'set_locale/:locale', constraints: { locale: /en|fr|de|cn/ }, to: 'locales#set'\n"
+      langs = !options[:languages] || options[:languages].empty? ? 'en' : options[:languages]
+      langs.gsub!( ',', '|' )
+
+      route = "\n  put 'set_locale/:locale', constraints: { locale: /#{langs}/ }, to: 'locales#set'\n"
       insert_into_file 'config/routes.rb', route, :before => /^end/
     end
 

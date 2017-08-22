@@ -21,11 +21,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.5'
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rake', '~> 12'
   # spec.add_development_dependency 'haml-rails', '>= 0.9.0'
 
   spec.add_runtime_dependency 'railties', '~> 5'
-  spec.add_runtime_dependency 'bootstrap-sass', '~> 3.2.0'
+  spec.add_runtime_dependency 'bootstrap-sass', '~> 3.2', '>= 3.2.0'
   # spec.add_runtime_dependency 'haml-rails', '>= 0.9.0'
+
+  spec.required_ruby_version = '>= 2.3'
 
 end
