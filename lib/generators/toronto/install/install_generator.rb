@@ -46,17 +46,6 @@ module Toronto
       copy_file 'controllers/locales_controller.rb', 'app/controllers/locales_controller.rb'
     end
 
-    def create_config_locales_file
-      langs = !options[:languages] || options[:languages].empty? ? 'en' : options[:languages]
-      langs = langs.split(',' )
-
-      data = "I18n.config.load_path += Dir['#{Rails.root.to_s}/config/locales/**/*.{rb,yml}']\n\n"
-      data << "I18n.config.available_locales = [ #{langs.map{ |e| ':'+e }.join( ', ' )} ]\n"
-      data << "I18n.default_locale = :#{langs.first}"
-
-      create_file 'config/initializers/locales.rb', data
-    end
-
     def patch_locale_files
       # TODO : use a template file
       data = %{
@@ -72,10 +61,19 @@ module Toronto
 
     def inject_locales_route
       langs = !options[:languages] || options[:languages].empty? ? 'en' : options[:languages]
+      langs_array = langs.split(',' )
       langs.gsub!( ',', '|' )
 
-      route = "\n  put 'set_locale/:locale', constraints: { locale: /#{langs}/ }, to: 'locales#set'\n"
-      insert_into_file 'config/routes.rb', route, :before => /^end/
+      # Create the routes for language management
+      route "put 'set_locale/:locale', constraints: { locale: /#{langs}/ }, to: 'locales#set'"
+      # insert_into_file 'config/routes.rb', route, :before => /^end/
+
+      # Create the local file
+      data = "I18n.config.load_path += Dir['#{Rails.root.to_s}/config/locales/**/*.{rb,yml}']\n\n"
+      data << "I18n.config.available_locales = [ #{langs_array.map{ |e| ':'+e }.join( ', ' )} ]\n"
+      data << "I18n.default_locale = :#{langs_array.first}"
+
+      create_file 'config/initializers/locales.rb', data
     end
 
     def inject_menu_helper
