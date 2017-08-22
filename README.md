@@ -53,7 +53,11 @@ To print the options and usage run the command `rails toronto:install --help`
       -se, [--stylesheet-engine=STYLESHEET_ENGINE]     # Indicates when to generate stylesheet engine
                                                        # Default: scss
           [--skip-turbolinks], [--no-skip-turbolinks]  # Indicates when to generate skip turbolinks
-
+          [--languages=LANGUAGES_LIST]                 # Indicates wich languages to use
+                                                       # Use --languages=en,fr,de,cn for english, french, german and chineese (the only languages that are implemented)
+                                                       # The first language in the list will be the default language in rails.
+                                                       # If option not given, then only the language english is generated
+          
     Runtime options:
       -f, [--force]                    # Overwrite files that already exist
       -p, [--pretend], [--no-pretend]  # Run but do not make any changes
