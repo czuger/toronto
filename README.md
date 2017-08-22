@@ -19,6 +19,7 @@ The current supported version of Twitter Bootstrap is 3.3.4.
 In your Gemfile, add this line:
 
     gem 'toronto'
+    gem 'haml-rails'
 
 Run bundle install:
 
