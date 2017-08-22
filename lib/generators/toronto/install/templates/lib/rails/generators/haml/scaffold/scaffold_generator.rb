@@ -4,17 +4,20 @@ require 'yaml'
 module Haml
   module Generators
     class ScaffoldGenerator < Erb::Generators::ScaffoldGenerator
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path('../templates', __FILE__)
 
       def copy_view_files
         available_views.each do |view|
           filename = filename_with_extensions(view)
-          template "#{view}.html.haml", File.join("app/views", controller_file_path, filename)
+          template "#{view}.html.haml", File.join('app/views', controller_file_path, filename)
         end
       end
 
       def copy_and_update_languages_files
-        languages = %w( en fr de cn )
+
+        languages = I18n.config.available_locales.map(&:to_s)
+        # source_paths << File.expand_path('../rails/lang', __FILE__)
+        source_paths << Rails.root + 'lib/rails/generators/lang'
 
         languages.each do |lang|
           yaml_path = File.join( 'config/locales', lang, "#{plural_table_name}.yml" )
