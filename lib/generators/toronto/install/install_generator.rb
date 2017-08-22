@@ -42,9 +42,19 @@ module Toronto
       end
     end
 
-    def copy_locale_files
-      copy_file 'config/initializers/locales.rb', 'config/initializers/locales.rb'
+    def copy_locales_controller
       copy_file 'controllers/locales_controller.rb', 'app/controllers/locales_controller.rb'
+    end
+
+    def create_config_locales_file
+      langs = !options[:languages] || options[:languages].empty? ? 'en' : options[:languages]
+      langs = langs.split(',' )
+
+      data = "I18n.config.load_path += Dir['#{Rails.root.to_s}/config/locales/**/*.{rb,yml}']\n\n"
+      data << "I18n.config.available_locales = [ #{langs.map{ |e| ':'+e }.join( ', ' )} ]\n"
+      data << "I18n.default_locale = :#{langs.first}"
+
+      create_file 'config/initializers/locales.rb', data
     end
 
     def patch_locale_files
