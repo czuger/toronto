@@ -17,7 +17,7 @@ module Haml
 
         languages = I18n.config.available_locales.map(&:to_s)
         # source_paths << File.expand_path('../rails/lang', __FILE__)
-        source_paths << Rails.root + 'lib/rails/generators/lang'
+        source_paths << ::Rails.root + 'lib/rails/generators/lang'
 
         languages.each do |lang|
           yaml_path = File.join( 'config/locales', lang, "#{plural_table_name}.yml" )
@@ -55,6 +55,10 @@ module Haml
             %li
               = nav_link( t( '#{plural_table_name}.menu_title' ), #{plural_table_name}_path )}
         insert_into_file 'app/views/layouts/application.html.haml', data, :after => '%ul.nav.navbar-nav'
+      end
+
+      def resource_route
+        inject_into_file 'config/routes.rb', "\n    resources :#{plural_table_name}",  after: /scope.*do/, verbose: false, force: false
       end
 
       protected

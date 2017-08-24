@@ -65,8 +65,9 @@ module Toronto
       langs.gsub!( ',', '|' )
 
       # Create the routes for language management
-      route "put 'set_locale/:locale', constraints: { locale: /#{langs}/ }, to: 'locales#set'"
-      # insert_into_file 'config/routes.rb', route, :before => /^end/
+      route 'end'
+      route '  # Put all your routes inside the scope'
+      route "scope '(:locale)', locale: /#{langs}/ do"
 
       # Create the local file
       data = "I18n.config.load_path += Dir['#{Rails.root.to_s}/config/locales/**/*.{rb,yml}']\n\n"
@@ -75,11 +76,11 @@ module Toronto
 
       create_file 'config/initializers/locales.rb', data
     end
-
+Z
     def inject_menu_helper
       # TODO : use a template file
       data = %{
-def nav_link(link_text, link_path)
+def nav_link(link_text, link_path)Z
   class_name = current_page?(link_path) ? 'active' : ''
 
   content_tag(:li, :class => class_name) do
