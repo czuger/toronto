@@ -50,13 +50,13 @@ module Toronto
       # TODO : use a template file
       data = %{
   def set_locale
-    I18n.locale = session[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 }
-      insert_into_file 'app/controllers/application_controller.rb', data, :before => /^end/
+      inject_into_file 'app/controllers/application_controller.rb', data, :before => /^end/
 
       data = "\n  before_action :set_locale"
-      insert_into_file 'app/controllers/application_controller.rb', data, :after => /^class ApplicationController < ActionController::Base/
+      inject_into_file 'app/controllers/application_controller.rb', data, :after => /^class ApplicationController < ActionController::Base/
     end
 
     def inject_locales_route
@@ -65,9 +65,10 @@ module Toronto
       langs.gsub!( ',', '|' )
 
       # Create the routes for language management
-      route 'end'
-      route '  # Put all your routes inside the scope'
-      route "scope '(:locale)', locale: /#{langs}/ do"
+      # This way lead to a lot of problem. We use ?locale=
+      # route 'end'
+      # route '  # Put all your routes inside the scope'
+      # route "scope '(:locale)', locale: /#{langs}/ do"
 
       # Create the local file
       data = "I18n.config.load_path += Dir['#{Rails.root.to_s}/config/locales/**/*.{rb,yml}']\n\n"
@@ -75,12 +76,18 @@ module Toronto
       data << "I18n.default_locale = :#{langs_array.first}"
 
       create_file 'config/initializers/locales.rb', data
+
+      route "put 'set_locale/:locale', constraints: { locale: /#{langs}/ }, to: 'locales#set'"
     end
-Z
+
+    # def disable_regular_routes_generation
+    #   create_file 'config/initializers/generators.rb', 'Rails.application.config.generators.skip_routes = true'
+    # end
+
     def inject_menu_helper
       # TODO : use a template file
       data = %{
-def nav_link(link_text, link_path)Z
+def nav_link(link_text, link_path)
   class_name = current_page?(link_path) ? 'active' : ''
 
   content_tag(:li, :class => class_name) do

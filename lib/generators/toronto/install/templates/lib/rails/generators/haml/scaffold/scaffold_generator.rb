@@ -57,9 +57,9 @@ module Haml
         insert_into_file 'app/views/layouts/application.html.haml', data, :after => '%ul.nav.navbar-nav'
       end
 
-      def resource_route
-        inject_into_file 'config/routes.rb', "\n    resources :#{plural_table_name}",  after: /scope.*do/, verbose: false, force: false
-      end
+      # def add_ressource_route
+      #   inject_into_file 'config/routes.rb', "\n    resources :#{plural_table_name}",  after: /scope.*do/, verbose: false, force: false
+      # end
 
       protected
 

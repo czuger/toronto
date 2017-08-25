@@ -1,14 +1,15 @@
 class LocalesController < ApplicationController
 
   def set
-    # TODO : implement it this way : https://lingohub.com/frameworks-file-formats/rails5-i18n-ruby-on-rails/
+    # implement it this way : https://lingohub.com/frameworks-file-formats/rails5-i18n-ruby-on-rails/
+    # Lead to a lot of problems
 
-    session[:return_to] ||= request.referer
+    return_to = request.referer
 
-    # I18n.locale = params[:locale] || I18n.default_locale
-    session[:locale] = params[:locale]
+    I18n.locale = params[:locale] if params[:locale]
+    # session[:locale] = params[:locale]
 
-    redirect_to session.delete(:return_to)
+    redirect_to return_to + '?locale=' + I18n.locale.to_s
   end
 
 end
