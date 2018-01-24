@@ -19,6 +19,10 @@ module Toronto
       directory "lib/templates/#{options[:template_engine]}"
     end
 
+    def copy_langs
+      directory 'lib/templates/lang', 'lib/rails/generators/lang'
+    end
+
     def copy_form_builder
       copy_file "form_builders/form_builder/_form.html.#{options[:template_engine]}", "lib/templates/#{options[:template_engine]}/scaffold/_form.html.#{options[:template_engine]}"
     end
@@ -60,7 +64,8 @@ module Toronto
     end
 
     def inject_locales_route
-      langs = !options[:languages] || options[:languages].empty? ? 'en' : options[:languages]
+      p options
+      langs = !options['languages'] || options['languages'].empty? ? 'en' : options['languages']
       langs_array = langs.split(',' )
       langs.gsub!( ',', '|' )
 
